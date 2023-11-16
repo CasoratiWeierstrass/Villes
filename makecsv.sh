@@ -4,10 +4,13 @@
 
 for arg in $@
 do
-	if [[ $arg =~ ^([0-9]{2})$ ]]
+	if [[ $arg =~ ^(0[12346]|11|2[478]|32|44|5[23]|7[56]|84|9[34])$ ]]
 	then
 		reg_code=${BASH_REMATCH[1]}
 		echo "Vous voulez des infos sur la région de code ${BASH_REMATCH[1]}"
+	else
+		echo "Code région non existant"
+		exit 1
 	fi
 done
 

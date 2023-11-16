@@ -1,21 +1,21 @@
 #!/bin/bash
 
-cd ..
-
 code_region=$1
 
-nom_region=$(cat script2/regions-france.csv | grep $code_region | cut -d"," -f2)
+bash makecsv.sh $code_region
 
-fichier=script1/$code_region.csv
+nom_region=$(cat data/regions-france.csv | grep $code_region | cut -d"," -f2)
+
+fichier=$code_region.csv
 
 if ! [ -f $fichier ]
 then
 	exit 1
 fi
 
-cp $fichier script2/$1.html
+cp $fichier $1.html
 
-index=script2/$1.html
+index=$1.html
 
 sed -E -i "s/:/ | /g" $index
 
